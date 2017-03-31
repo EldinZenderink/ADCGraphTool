@@ -10,7 +10,7 @@ You can also set trigger values per analog pin. The code for the arduino has by 
 
 ### Installation and Usage
 
-1. Download the release zip [here](http://tocome.com).
+1. Download the release zip [here](https://github.com/EldinZenderink/ADCGraphTool/releases/).
 2. Open the INO file located in the zip with your Arduino IDE.
 3. Compile and Upload to the Arduino.
 4. Run the ADCGraphTool.exe 

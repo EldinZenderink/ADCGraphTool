@@ -13,39 +13,45 @@ namespace ADCGraphTool
     public partial class MainWindow : Form
     {
 
-        public SerialPort ComPort = null;
+        FlexibleChart flexChart = null;
+        public static SerialPort ComPort = null;
         public Thread putDataInComPortOut = null;
         public Thread ClearGraphThread = null;
         public Thread ConstantChartUpdate = null;
         public Thread CheckComPorts = null;
-        public int speed = 30;
-        public int clearInterval = 1000;
+        public static int speed = 30;
+        public static int clearInterval = 1000;
         public int ammountOfIntegers = 0;
         
         public bool trigger1triggeronbelow = false;
         public bool trigger2triggeronbelow = false;
         public int trigger1counter = 0;
-        public List<int> dataPointsPIN0 = new List<int>();
-        public List<int> dataPointsPIN1 = new List<int>();
-        public List<int> dataPointsPIN2 = new List<int>();
-        public List<int> dataPointsPIN3 = new List<int>();
-        public List<int> dataPointsPIN4 = new List<int>();
-        public List<int> dataPointsPIN5 = new List<int>();
+        public static List<int> dataPointsPIN0 = new List<int>();
+        public static List<int> dataPointsPIN1 = new List<int>();
+        public static List<int> dataPointsPIN2 = new List<int>();
+        public static List<int> dataPointsPIN3 = new List<int>();
+        public static List<int> dataPointsPIN4 = new List<int>();
+        public static List<int> dataPointsPIN5 = new List<int>();
 
-        public List<List<int>> CurrentData = new List<List<int>>();
-        public List<List<int>> AllData = new List<List<int>>();
+        public static List<List<int>> CurrentData = new List<List<int>>();
+        public static List<List<int>> AllData = new List<List<int>>();
 
-        public List<int> TriggerValuesPerPin = new List<int>();
-        public List<bool> TriggerInvertedPerPin = new List<bool>();
+        public static List<int> TriggerValuesPerPin = new List<int>();
+        public static List<bool> TriggerInvertedPerPin = new List<bool>();
         public int countReadoutPostition = 0;
         public int ammountOfLinesRead = 0;
         public bool ComPortOutputPause = false;
-        public bool PauseChart = false;
+        public static bool PauseChart = false;
         public string ComPortOutputPauseBuffer = "";
+
+        public bool DataReceived = false;
 
         public MainWindow()
         {
             InitializeComponent();
+
+
+            flexChart = new FlexibleChart();
             List<int> dummy = new List<int>();
             dummy.Add(1);
 
@@ -156,14 +162,11 @@ namespace ADCGraphTool
             }
             else
             {
-                //LineChart.ChartAreas[0].AxisY.StripLines.Clear();
                 StripLine stripline = new StripLine();
                 stripline.Interval = 0;
                 stripline.IntervalOffset = y;
                 stripline.StripWidth = 1;
-                stripline.BackColor = color;
-
-               
+                stripline.BackColor = color;               
                 LineChart.ChartAreas[0].AxisY.StripLines[lineNumber] = stripline;
             }
         }
@@ -198,11 +201,7 @@ namespace ADCGraphTool
                 dataPointsPIN3.Clear();
                 dataPointsPIN4.Clear();
                 dataPointsPIN5.Clear(); 
-                //ComPortOutput.Clear();
                 LineChart.ChartAreas[0].AxisX.Maximum = clearInterval;
-
-
-                
             }
         }
 
@@ -315,23 +314,30 @@ namespace ADCGraphTool
             }
         }
 
-        public void ClearInterval()
+        public void CheckDataReceived()
         {
-            Random rnd = new Random();
-            while (ComPort.IsOpen)
+            while (true)
             {
-                if (!PauseChart)
+                Thread.Sleep(1000);
+                if (!DataReceived && ComPort.IsOpen && !PauseChart)
                 {
-                   // ClearChart();
-                }
-                int x = 0;
-                while(x < clearInterval && ComPort.IsOpen)
-                {
-                    x++;
-                    Thread.Sleep(1000);
+                    if (putDataInComPortOut.IsAlive)
+                    {
+                        putDataInComPortOut.Abort();
+                    }
+
+                    try
+                    {
+
+                        putDataInComPortOut.Start();
+                    } catch
+                    {
+
+                    }
                 }
             }
         }
+       
 
         private void ReadFromComPort()
         {
@@ -362,8 +368,8 @@ namespace ADCGraphTool
                             {
                                 string[] parts = message.Split('D');
                                 ParseIntegersAndPutThemInGraph(parts[parts.Length - 2]);
-                                //AppendToComPortOutput(parts[parts.Length - 2]);
                                 message = "";
+                                DataReceived = true;
                             }
 
 
@@ -373,11 +379,26 @@ namespace ADCGraphTool
                     }
                     catch
                     {
-
                     }
-                    if (ComPort.IsOpen && !readModeCheckbox.Checked)
+                    if (ComPort.IsOpen)
                     {
-                        kickoffRead();
+                        if (!readModeCheckbox.Checked)
+                        {
+                            kickoffRead();
+                        }
+                        else
+                        {
+                            while (readModeCheckbox.Checked)
+                            {
+
+                                message = ComPort.ReadLine();
+                                AppendToComPortOutput(message);
+                                string[] parts = message.Split('D');
+                                ParseIntegersAndPutThemInGraph(parts[parts.Length - 1]);
+                                message = "";
+                            }
+                            kickoffRead();
+                        }
                     }
                 }, null);
             };
@@ -671,7 +692,7 @@ namespace ADCGraphTool
                         putDataInComPortOut = new Thread(new ThreadStart(ReadFromComPort));
                         putDataInComPortOut.Start();
 
-                        ClearGraphThread = new Thread(new ThreadStart(ClearInterval));
+                        ClearGraphThread = new Thread(new ThreadStart(CheckDataReceived));
                         ClearGraphThread.Start();
 
                         ConstantChartUpdate = new Thread(new ThreadStart(ConstantChartUpdateThread));
@@ -788,10 +809,12 @@ namespace ADCGraphTool
             if (PIN0CheckBox.Checked)
             {
                 LineChart.Series[0].Enabled = true;
+                flexChart.setVisiblePin(0);
             }
             else
             {
                 LineChart.Series[0].Enabled = false;
+                flexChart.setHiddenPin(0);
             }
         }
 
@@ -800,9 +823,11 @@ namespace ADCGraphTool
             if (PIN1CheckBox.Checked)
             {
                 LineChart.Series[1].Enabled = true;
+                flexChart.setVisiblePin(1);
             } else
             {
                 LineChart.Series[1].Enabled = false;
+                flexChart.setHiddenPin(1);
             }
         }
 
@@ -811,10 +836,12 @@ namespace ADCGraphTool
             if (PIN2CheckBox.Checked)
             {
                 LineChart.Series[2].Enabled = true;
+                flexChart.setVisiblePin(2);
             }
             else
             {
                 LineChart.Series[2].Enabled = false;
+                flexChart.setHiddenPin(2);
             }
         }
 
@@ -823,10 +850,12 @@ namespace ADCGraphTool
             if (PIN3CheckBox.Checked)
             {
                 LineChart.Series[3].Enabled = true;
+                flexChart.setVisiblePin(3);
             }
             else
             {
                 LineChart.Series[3].Enabled = false;
+                flexChart.setHiddenPin(3);
             }
         }
 
@@ -835,10 +864,12 @@ namespace ADCGraphTool
             if (PIN4CheckBox.Checked)
             {
                 LineChart.Series[4].Enabled = true;
+                flexChart.setVisiblePin(4);
             }
             else
             {
                 LineChart.Series[4].Enabled = false;
+                flexChart.setHiddenPin(4);
             }
         }
 
@@ -847,10 +878,14 @@ namespace ADCGraphTool
             if (PIN5CheckBox.Checked)
             {
                 LineChart.Series[5].Enabled = true;
+
+                flexChart.setVisiblePin(5);
             }
             else
             {
                 LineChart.Series[5].Enabled = false;
+
+                flexChart.setHiddenPin(5);
             }
         }
 
@@ -893,6 +928,7 @@ namespace ADCGraphTool
             try { putDataInComPortOut.Abort(); } catch { }
             try { ClearGraphThread.Abort(); } catch { }
             try { ConstantChartUpdate.Abort(); } catch { }
+            try { FlexibleChart.ConstantChartUpdate.Abort(); } catch { }
             try { CheckComPorts.Abort(); } catch { }
         }
 
@@ -996,6 +1032,69 @@ namespace ADCGraphTool
             if (readModeCheckbox.Checked)
             {
                 MessageBox.Show("This mode allows for better readability within the Data Received/Status window, but it introduces an increasing delay on processing, please don't use this when you are logging data in the graph in real time!");
+            }
+        }
+
+        private void ApplyTriggerValueToAllPins_Click(object sender, EventArgs e)
+        {
+            if (ComPort.IsOpen)
+            {
+                string finalstring = "";
+
+                for(int a = 0; a < 6; a++)
+                {
+                    TriggerValuesPerPin[a] = TriggerValuesPerPin[TriggerPinComboBox.SelectedIndex];
+                    TriggerInvertedPerPin[a] = TriggerInvertedPerPin[TriggerPinComboBox.SelectedIndex];
+                }
+
+                for (int x = 0; x < 6; x++)
+                {
+                    string toSend = convertIntToString(TriggerValuesPerPin[x]);
+                    if (TriggerInvertedPerPin[x])
+                    {
+                        toSend = toSend + "1";
+                    }
+                    else
+                    {
+                        toSend = toSend + "0";
+                    }
+
+                    AppendToComPortOutput(toSend);
+                    finalstring = finalstring + toSend;
+
+                }
+
+                PauseChart = true;
+                ComPort.Write(finalstring);
+                ComPort.BaseStream.Flush();
+                Thread.Sleep(2000);
+                PauseChart = false;
+
+                AppendDebugOutputTextBox(finalstring);
+            }
+        }
+
+        private void FlexibleChartWindow_Click(object sender, EventArgs e)
+        {
+            if(flexChart == null)
+            {
+                flexChart = new FlexibleChart();
+            }
+            if (Application.OpenForms.OfType<FlexibleChart>().Count() == 1)
+            {
+
+                Application.OpenForms.OfType<FlexibleChart>().First().Close();
+            }
+            try
+            {
+                flexChart.Show();
+            }
+            catch
+            {
+                
+                flexChart = new FlexibleChart();
+                flexChart.Show();
+
             }
         }
     }

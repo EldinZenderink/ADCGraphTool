@@ -63,38 +63,27 @@ void setupTriggers(){
         memcpy(val, received, 4);
         pin0trigger0 = convertStringToInt(val);
         pin0trigger0inv = received[4] - '0';
-        Serial.println(pin0trigger0);
-        Serial.println(pin0trigger0inv);    
+           
         memcpy(val, received + 5, 4);
         pin1trigger0 = convertStringToInt(val);
         pin1trigger0inv = received[9] - '0';
         
-        Serial.println(pin1trigger0);
-        Serial.println(pin1trigger0inv);
         memcpy(val, received + 10, 4);
         pin2trigger0 = convertStringToInt(val);
         pin2trigger0inv = received[14] - '0';
-        
-        Serial.println(pin2trigger0);
-        Serial.println(pin2trigger0inv);    
+          
         memcpy(val, received + 15, 4);
         pin3trigger0 = convertStringToInt(val);
         pin3trigger0inv = received[19] - '0';
-        
-        Serial.println(pin3trigger0);
-        Serial.println(pin3trigger0inv);     
+            
         memcpy(val, received + 20, 4);
         pin4trigger0 = convertStringToInt(val);
         pin4trigger0inv = received[24] - '0';
         
-        Serial.println(pin4trigger0);
-        Serial.println(pin4trigger0inv);
         memcpy(val, received + 25, 4);
         pin5trigger0 = convertStringToInt(val);
         pin5trigger0inv = received[29] - '0';
         
-        Serial.println(pin5trigger0);
-        Serial.println(pin5trigger0inv);
         digitalWrite(13, HIGH);
         delay(250);
         digitalWrite(13, LOW);
@@ -146,10 +135,10 @@ void triggerTriggers(uint16_t a0, uint16_t a1, uint16_t a2,uint16_t a3,uint16_t 
     } else if(a2 > pin2trigger0){
       digitalWrite(5, LOW);
     }
-  } else if(a2 < pin2trigger0) {
+  } else {
     if(a2 > pin2trigger0){
       digitalWrite(5, HIGH);
-    } else {
+    } else if(a2 < pin2trigger0) {
       digitalWrite(5, LOW);
     }
   }
@@ -162,8 +151,10 @@ void triggerTriggers(uint16_t a0, uint16_t a1, uint16_t a2,uint16_t a3,uint16_t 
     }
   } else {
     if(a3 > pin3trigger0){
+     // Serial.println("Pin 6 should be high");
       digitalWrite(6, HIGH);
     } else if (a3 < pin3trigger0) {
+     // Serial.println("Pin 6 should be low");
       digitalWrite(6, LOW);
     }
   }
@@ -201,7 +192,7 @@ void triggerTriggers(uint16_t a0, uint16_t a1, uint16_t a2,uint16_t a3,uint16_t 
 //arduino specific code, setup is actually what comes before the main loop. Settin gup all the digital pins for output mode.
 void setup() {
   uint8_t pin = 0;
-  for(pin = 0; pin < 8; pin++){    
+  for(pin = 2; pin < 8; pin++){    
     pinMode(pin, OUTPUT);
   }  
   pinMode(13, OUTPUT);

@@ -28,14 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series19 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series20 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series21 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series22 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series23 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series24 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.LineChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.DebugOutputTextBox = new System.Windows.Forms.TextBox();
@@ -67,6 +67,7 @@
             this.label28 = new System.Windows.Forms.Label();
             this.ComPortOutput = new System.Windows.Forms.RichTextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.ApplyTriggerValueToAllPins = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.ApplyTriggerButton = new System.Windows.Forms.Button();
             this.TriggerPinComboBox = new System.Windows.Forms.ComboBox();
@@ -90,6 +91,7 @@
             this.Pin2TriggerState = new System.Windows.Forms.GroupBox();
             this.Pin1TriggerState = new System.Windows.Forms.GroupBox();
             this.Pin0TriggerState = new System.Windows.Forms.GroupBox();
+            this.FlexibleChartWindow = new System.Windows.Forms.Button();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.LineChart)).BeginInit();
             this.groupBox12.SuspendLayout();
@@ -106,10 +108,11 @@
             // groupBox2
             // 
             this.groupBox2.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.groupBox2.Controls.Add(this.FlexibleChartWindow);
             this.groupBox2.Controls.Add(this.LineChart);
-            this.groupBox2.Location = new System.Drawing.Point(210, 2);
+            this.groupBox2.Location = new System.Drawing.Point(210, 23);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(662, 370);
+            this.groupBox2.Size = new System.Drawing.Size(662, 393);
             this.groupBox2.TabIndex = 37;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Graph";
@@ -117,49 +120,56 @@
             // LineChart
             // 
             this.LineChart.Anchor = System.Windows.Forms.AnchorStyles.None;
-            chartArea4.Name = "ChartArea1";
-            this.LineChart.ChartAreas.Add(chartArea4);
-            legend4.Name = "Legend1";
-            this.LineChart.Legends.Add(legend4);
+            chartArea1.Name = "ChartArea1";
+            this.LineChart.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.LineChart.Legends.Add(legend1);
             this.LineChart.Location = new System.Drawing.Point(9, 16);
             this.LineChart.Name = "LineChart";
-            series19.ChartArea = "ChartArea1";
-            series19.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series19.Color = System.Drawing.Color.Silver;
-            series19.Legend = "Legend1";
-            series19.Name = "PIN0";
-            series20.ChartArea = "ChartArea1";
-            series20.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series20.Color = System.Drawing.Color.Red;
-            series20.Legend = "Legend1";
-            series20.Name = "PIN1";
-            series21.ChartArea = "ChartArea1";
-            series21.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series21.Color = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            series21.Legend = "Legend1";
-            series21.Name = "PIN2";
-            series22.ChartArea = "ChartArea1";
-            series22.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series22.Color = System.Drawing.Color.Yellow;
-            series22.Legend = "Legend1";
-            series22.Name = "PIN3";
-            series23.ChartArea = "ChartArea1";
-            series23.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series23.Color = System.Drawing.Color.Lime;
-            series23.Legend = "Legend1";
-            series23.Name = "PIN4";
-            series24.ChartArea = "ChartArea1";
-            series24.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series24.Color = System.Drawing.Color.Aqua;
-            series24.Legend = "Legend1";
-            series24.Name = "PIN5";
-            this.LineChart.Series.Add(series19);
-            this.LineChart.Series.Add(series20);
-            this.LineChart.Series.Add(series21);
-            this.LineChart.Series.Add(series22);
-            this.LineChart.Series.Add(series23);
-            this.LineChart.Series.Add(series24);
-            this.LineChart.Size = new System.Drawing.Size(636, 341);
+            this.LineChart.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Berry;
+            series1.BorderWidth = 2;
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series1.Color = System.Drawing.Color.DimGray;
+            series1.Legend = "Legend1";
+            series1.Name = "PIN0";
+            series2.BorderWidth = 2;
+            series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series2.Color = System.Drawing.Color.Red;
+            series2.Legend = "Legend1";
+            series2.Name = "PIN1";
+            series3.BorderWidth = 2;
+            series3.ChartArea = "ChartArea1";
+            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series3.Color = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            series3.Legend = "Legend1";
+            series3.Name = "PIN2";
+            series4.BorderWidth = 2;
+            series4.ChartArea = "ChartArea1";
+            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series4.Color = System.Drawing.Color.Teal;
+            series4.Legend = "Legend1";
+            series4.Name = "PIN3";
+            series5.BorderWidth = 2;
+            series5.ChartArea = "ChartArea1";
+            series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series5.Color = System.Drawing.Color.DarkGreen;
+            series5.Legend = "Legend1";
+            series5.Name = "PIN4";
+            series6.BorderWidth = 2;
+            series6.ChartArea = "ChartArea1";
+            series6.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series6.Color = System.Drawing.Color.Indigo;
+            series6.Legend = "Legend1";
+            series6.Name = "PIN5";
+            this.LineChart.Series.Add(series1);
+            this.LineChart.Series.Add(series2);
+            this.LineChart.Series.Add(series3);
+            this.LineChart.Series.Add(series4);
+            this.LineChart.Series.Add(series5);
+            this.LineChart.Series.Add(series6);
+            this.LineChart.Size = new System.Drawing.Size(647, 346);
             this.LineChart.TabIndex = 0;
             this.LineChart.Text = "LineChart";
             this.LineChart.DoubleClick += new System.EventHandler(this.LineChart_DoubleClick);
@@ -167,7 +177,7 @@
             // DebugOutputTextBox
             // 
             this.DebugOutputTextBox.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.DebugOutputTextBox.Location = new System.Drawing.Point(8, 560);
+            this.DebugOutputTextBox.Location = new System.Drawing.Point(8, 597);
             this.DebugOutputTextBox.Name = "DebugOutputTextBox";
             this.DebugOutputTextBox.Size = new System.Drawing.Size(984, 20);
             this.DebugOutputTextBox.TabIndex = 36;
@@ -181,9 +191,9 @@
             this.groupBox12.Controls.Add(this.PIN2CheckBox);
             this.groupBox12.Controls.Add(this.PIN1CheckBox);
             this.groupBox12.Controls.Add(this.PIN0CheckBox);
-            this.groupBox12.Location = new System.Drawing.Point(878, 2);
+            this.groupBox12.Location = new System.Drawing.Point(878, 23);
             this.groupBox12.Name = "groupBox12";
-            this.groupBox12.Size = new System.Drawing.Size(111, 370);
+            this.groupBox12.Size = new System.Drawing.Size(111, 393);
             this.groupBox12.TabIndex = 35;
             this.groupBox12.TabStop = false;
             this.groupBox12.Text = "Show ADC Values";
@@ -194,7 +204,7 @@
             this.PIN5CheckBox.AutoSize = true;
             this.PIN5CheckBox.Checked = true;
             this.PIN5CheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.PIN5CheckBox.Location = new System.Drawing.Point(33, 141);
+            this.PIN5CheckBox.Location = new System.Drawing.Point(33, 153);
             this.PIN5CheckBox.Name = "PIN5CheckBox";
             this.PIN5CheckBox.Size = new System.Drawing.Size(50, 17);
             this.PIN5CheckBox.TabIndex = 31;
@@ -208,7 +218,7 @@
             this.PIN4CheckBox.AutoSize = true;
             this.PIN4CheckBox.Checked = true;
             this.PIN4CheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.PIN4CheckBox.Location = new System.Drawing.Point(33, 118);
+            this.PIN4CheckBox.Location = new System.Drawing.Point(33, 130);
             this.PIN4CheckBox.Name = "PIN4CheckBox";
             this.PIN4CheckBox.Size = new System.Drawing.Size(50, 17);
             this.PIN4CheckBox.TabIndex = 30;
@@ -222,7 +232,7 @@
             this.PIN3CheckBox.AutoSize = true;
             this.PIN3CheckBox.Checked = true;
             this.PIN3CheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.PIN3CheckBox.Location = new System.Drawing.Point(33, 95);
+            this.PIN3CheckBox.Location = new System.Drawing.Point(33, 107);
             this.PIN3CheckBox.Name = "PIN3CheckBox";
             this.PIN3CheckBox.Size = new System.Drawing.Size(50, 17);
             this.PIN3CheckBox.TabIndex = 29;
@@ -236,7 +246,7 @@
             this.PIN2CheckBox.AutoSize = true;
             this.PIN2CheckBox.Checked = true;
             this.PIN2CheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.PIN2CheckBox.Location = new System.Drawing.Point(33, 73);
+            this.PIN2CheckBox.Location = new System.Drawing.Point(33, 85);
             this.PIN2CheckBox.Name = "PIN2CheckBox";
             this.PIN2CheckBox.Size = new System.Drawing.Size(50, 17);
             this.PIN2CheckBox.TabIndex = 28;
@@ -250,7 +260,7 @@
             this.PIN1CheckBox.AutoSize = true;
             this.PIN1CheckBox.Checked = true;
             this.PIN1CheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.PIN1CheckBox.Location = new System.Drawing.Point(33, 50);
+            this.PIN1CheckBox.Location = new System.Drawing.Point(33, 62);
             this.PIN1CheckBox.Name = "PIN1CheckBox";
             this.PIN1CheckBox.Size = new System.Drawing.Size(50, 17);
             this.PIN1CheckBox.TabIndex = 27;
@@ -264,7 +274,7 @@
             this.PIN0CheckBox.AutoSize = true;
             this.PIN0CheckBox.Checked = true;
             this.PIN0CheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.PIN0CheckBox.Location = new System.Drawing.Point(33, 27);
+            this.PIN0CheckBox.Location = new System.Drawing.Point(33, 39);
             this.PIN0CheckBox.Name = "PIN0CheckBox";
             this.PIN0CheckBox.Size = new System.Drawing.Size(50, 17);
             this.PIN0CheckBox.TabIndex = 26;
@@ -287,9 +297,9 @@
             this.groupBox8.Controls.Add(this.SpeedLabel);
             this.groupBox8.Controls.Add(this.label22);
             this.groupBox8.Controls.Add(this.SpeedTrackBar);
-            this.groupBox8.Location = new System.Drawing.Point(5, 165);
+            this.groupBox8.Location = new System.Drawing.Point(5, 186);
             this.groupBox8.Name = "groupBox8";
-            this.groupBox8.Size = new System.Drawing.Size(199, 207);
+            this.groupBox8.Size = new System.Drawing.Size(199, 230);
             this.groupBox8.TabIndex = 33;
             this.groupBox8.TabStop = false;
             this.groupBox8.Text = "Graph Settings";
@@ -297,7 +307,7 @@
             // SaveButton
             // 
             this.SaveButton.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.SaveButton.Location = new System.Drawing.Point(33, 171);
+            this.SaveButton.Location = new System.Drawing.Point(33, 182);
             this.SaveButton.Name = "SaveButton";
             this.SaveButton.Size = new System.Drawing.Size(135, 21);
             this.SaveButton.TabIndex = 31;
@@ -308,7 +318,7 @@
             // PauseButton
             // 
             this.PauseButton.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.PauseButton.Location = new System.Drawing.Point(33, 146);
+            this.PauseButton.Location = new System.Drawing.Point(33, 157);
             this.PauseButton.Name = "PauseButton";
             this.PauseButton.Size = new System.Drawing.Size(135, 23);
             this.PauseButton.TabIndex = 28;
@@ -320,7 +330,7 @@
             // 
             this.ClearGraphIntervalLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.ClearGraphIntervalLabel.AutoSize = true;
-            this.ClearGraphIntervalLabel.Location = new System.Drawing.Point(143, 82);
+            this.ClearGraphIntervalLabel.Location = new System.Drawing.Point(143, 93);
             this.ClearGraphIntervalLabel.Name = "ClearGraphIntervalLabel";
             this.ClearGraphIntervalLabel.Size = new System.Drawing.Size(31, 13);
             this.ClearGraphIntervalLabel.TabIndex = 30;
@@ -330,7 +340,7 @@
             // 
             this.label27.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(21, 130);
+            this.label27.Location = new System.Drawing.Point(21, 141);
             this.label27.Name = "label27";
             this.label27.Size = new System.Drawing.Size(13, 13);
             this.label27.TabIndex = 29;
@@ -340,7 +350,7 @@
             // 
             this.label26.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(143, 130);
+            this.label26.Location = new System.Drawing.Point(143, 141);
             this.label26.Name = "label26";
             this.label26.Size = new System.Drawing.Size(37, 13);
             this.label26.TabIndex = 28;
@@ -350,7 +360,7 @@
             // 
             this.label23.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(21, 82);
+            this.label23.Location = new System.Drawing.Point(21, 93);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(66, 13);
             this.label23.TabIndex = 27;
@@ -360,7 +370,7 @@
             // 
             this.ClearGraphIntervalTrackBar.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.ClearGraphIntervalTrackBar.LargeChange = 500;
-            this.ClearGraphIntervalTrackBar.Location = new System.Drawing.Point(21, 98);
+            this.ClearGraphIntervalTrackBar.Location = new System.Drawing.Point(21, 109);
             this.ClearGraphIntervalTrackBar.Maximum = 10000;
             this.ClearGraphIntervalTrackBar.Minimum = 1;
             this.ClearGraphIntervalTrackBar.Name = "ClearGraphIntervalTrackBar";
@@ -374,7 +384,7 @@
             // 
             this.label25.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(21, 60);
+            this.label25.Location = new System.Drawing.Point(21, 71);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(13, 13);
             this.label25.TabIndex = 25;
@@ -384,7 +394,7 @@
             // 
             this.label24.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(143, 60);
+            this.label24.Location = new System.Drawing.Point(143, 71);
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(25, 13);
             this.label24.TabIndex = 22;
@@ -394,7 +404,7 @@
             // 
             this.SpeedLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.SpeedLabel.AutoSize = true;
-            this.SpeedLabel.Location = new System.Drawing.Point(148, 13);
+            this.SpeedLabel.Location = new System.Drawing.Point(148, 24);
             this.SpeedLabel.Name = "SpeedLabel";
             this.SpeedLabel.Size = new System.Drawing.Size(26, 13);
             this.SpeedLabel.TabIndex = 23;
@@ -404,7 +414,7 @@
             // 
             this.label22.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(21, 13);
+            this.label22.Location = new System.Drawing.Point(21, 24);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(41, 13);
             this.label22.TabIndex = 22;
@@ -413,7 +423,7 @@
             // SpeedTrackBar
             // 
             this.SpeedTrackBar.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.SpeedTrackBar.Location = new System.Drawing.Point(21, 34);
+            this.SpeedTrackBar.Location = new System.Drawing.Point(21, 45);
             this.SpeedTrackBar.Maximum = 1000;
             this.SpeedTrackBar.Minimum = 1;
             this.SpeedTrackBar.Name = "SpeedTrackBar";
@@ -431,7 +441,7 @@
             this.groupBox6.Controls.Add(this.label29);
             this.groupBox6.Controls.Add(this.label28);
             this.groupBox6.Controls.Add(this.ComPortOutput);
-            this.groupBox6.Location = new System.Drawing.Point(5, 378);
+            this.groupBox6.Location = new System.Drawing.Point(5, 415);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.Size = new System.Drawing.Size(199, 176);
             this.groupBox6.TabIndex = 31;
@@ -508,6 +518,7 @@
             // groupBox3
             // 
             this.groupBox3.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.groupBox3.Controls.Add(this.ApplyTriggerValueToAllPins);
             this.groupBox3.Controls.Add(this.label1);
             this.groupBox3.Controls.Add(this.ApplyTriggerButton);
             this.groupBox3.Controls.Add(this.TriggerPinComboBox);
@@ -517,12 +528,23 @@
             this.groupBox3.Controls.Add(this.label9);
             this.groupBox3.Controls.Add(this.label8);
             this.groupBox3.Controls.Add(this.Trigger1TrackBar);
-            this.groupBox3.Location = new System.Drawing.Point(210, 378);
+            this.groupBox3.Location = new System.Drawing.Point(210, 415);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(850, 176);
             this.groupBox3.TabIndex = 32;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Setup Trigger Per Pin";
+            // 
+            // ApplyTriggerValueToAllPins
+            // 
+            this.ApplyTriggerValueToAllPins.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.ApplyTriggerValueToAllPins.Location = new System.Drawing.Point(474, 129);
+            this.ApplyTriggerValueToAllPins.Name = "ApplyTriggerValueToAllPins";
+            this.ApplyTriggerValueToAllPins.Size = new System.Drawing.Size(317, 23);
+            this.ApplyTriggerValueToAllPins.TabIndex = 30;
+            this.ApplyTriggerValueToAllPins.Text = "Set Current Trigger Value To All Pins";
+            this.ApplyTriggerValueToAllPins.UseVisualStyleBackColor = true;
+            this.ApplyTriggerValueToAllPins.Click += new System.EventHandler(this.ApplyTriggerValueToAllPins_Click);
             // 
             // label1
             // 
@@ -538,11 +560,11 @@
             // ApplyTriggerButton
             // 
             this.ApplyTriggerButton.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.ApplyTriggerButton.Location = new System.Drawing.Point(198, 129);
+            this.ApplyTriggerButton.Location = new System.Drawing.Point(148, 129);
             this.ApplyTriggerButton.Name = "ApplyTriggerButton";
-            this.ApplyTriggerButton.Size = new System.Drawing.Size(464, 23);
+            this.ApplyTriggerButton.Size = new System.Drawing.Size(317, 23);
             this.ApplyTriggerButton.TabIndex = 28;
-            this.ApplyTriggerButton.Text = "Apply (On Arduino)";
+            this.ApplyTriggerButton.Text = "Set Current Trigger Value To Pin";
             this.ApplyTriggerButton.UseVisualStyleBackColor = true;
             this.ApplyTriggerButton.Click += new System.EventHandler(this.ApplyTriggerButton_Click);
             // 
@@ -635,7 +657,7 @@
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.BaudRateSelect);
-            this.groupBox1.Location = new System.Drawing.Point(5, 2);
+            this.groupBox1.Location = new System.Drawing.Point(5, 23);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(199, 159);
             this.groupBox1.TabIndex = 30;
@@ -731,9 +753,9 @@
             this.groupBox4.Controls.Add(this.Pin2TriggerState);
             this.groupBox4.Controls.Add(this.Pin1TriggerState);
             this.groupBox4.Controls.Add(this.Pin0TriggerState);
-            this.groupBox4.Location = new System.Drawing.Point(994, 2);
+            this.groupBox4.Location = new System.Drawing.Point(994, 23);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(65, 370);
+            this.groupBox4.Size = new System.Drawing.Size(65, 393);
             this.groupBox4.TabIndex = 38;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Triggers";
@@ -798,11 +820,22 @@
             this.Pin0TriggerState.TabStop = false;
             this.Pin0TriggerState.Text = "Pin 0";
             // 
+            // FlexibleChartWindow
+            // 
+            this.FlexibleChartWindow.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.FlexibleChartWindow.Location = new System.Drawing.Point(148, 364);
+            this.FlexibleChartWindow.Name = "FlexibleChartWindow";
+            this.FlexibleChartWindow.Size = new System.Drawing.Size(317, 23);
+            this.FlexibleChartWindow.TabIndex = 31;
+            this.FlexibleChartWindow.Text = "Open Flexible Chart Window";
+            this.FlexibleChartWindow.UseVisualStyleBackColor = true;
+            this.FlexibleChartWindow.Click += new System.EventHandler(this.FlexibleChartWindow_Click);
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1063, 583);
+            this.ClientSize = new System.Drawing.Size(1063, 625);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.DebugOutputTextBox);
@@ -892,6 +925,8 @@
         private System.Windows.Forms.GroupBox Pin2TriggerState;
         private System.Windows.Forms.GroupBox Pin1TriggerState;
         private System.Windows.Forms.GroupBox Pin0TriggerState;
+        private System.Windows.Forms.Button ApplyTriggerValueToAllPins;
+        private System.Windows.Forms.Button FlexibleChartWindow;
     }
 }
 
